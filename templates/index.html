@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mood Quotes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f0f4f8;
+            --card-color: #ffffff;
+            --text-color: #2c3e50;
+            --accent-color: #3498db;
+            --soft-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .mood-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .mood-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            background-color: #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .mood-btn.active, .mood-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        .quote-card {
+            background-color: var(--card-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: var(--soft-shadow);
+            transition: transform 0.3s ease;
+        }
+        .quote-card:hover {
+            transform: translateY(-5px);
+        }
+        .quote-text {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        .quote-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        .add-quote-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 12px;
+            background-color: var(--accent-color);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+        }
+        .add-quote-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; margin-bottom: 20px;">Mood Quotes</h1>
+        
+        <div class="mood-filters">
+            <a href="{{ url_for('index') }}" class="mood-btn {% if not selected_mood %}active{% endif %}">All Quotes</a>
+            {% for mood in available_moods %}
+            <a href="{{ url_for('index', mood=mood) }}" class="mood-btn {% if selected_mood == mood %}active{% endif %}">
+                {{ mood }}
+            </a>
+            {% endfor %}
+        </div>
+
+        <a href="{{ url_for('add_quote') }}" class="add-quote-btn">Share Your Quote</a>
+        
+        {% for quote, mood, author, timestamp in quotes %}
+        <div class="quote-card">
+            <p class="quote-text">"{{ quote }}"</p>
+            <div class="quote-meta">
+                <span>- {{ author or 'Anonymous' }}</span>
+                <span>{{ mood }} | {{ timestamp }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

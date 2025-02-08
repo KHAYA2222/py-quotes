@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Share Your Thoughts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soft-blue: #e6f2ff;
+            --calm-blue: #b3d9ff;
+            --deep-blue: #4a90e2;
+            --text-color: #2c3e50;
+            --background-color: #f4f7f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .quote-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            transition: all 0.3s ease;
+        }
+
+        .quote-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--deep-blue);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        textarea, select, input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--calm-blue);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        textarea:focus, select:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--deep-blue);
+            box-shadow: 0 0 0 3px rgba(74,144,226,0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--deep-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #3a7bd5;
+            transform: translateY(-3px);
+        }
+
+        select option {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="quote-container">
+        <h1>Share Your Thoughts</h1>
+        <form method="POST">
+            <div class="form-group">
+                <textarea name="quote" placeholder="Write your quote here..." required></textarea>
+            </div>
+            <div class="form-group">
+                <select name="mood" required>
+                    <option value="">Select Your Mood</option>
+                    <option value="Happy">Happy 😊</option>
+                    <option value="Sad">Sad 😢</option>
+                    <option value="Inspirational">Inspirational 🌟</option>
+                    <option value="Funny">Funny 😂</option>
+                    <option value="Philosophical">Philosophical 🤔</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" name="author" placeholder="Your Name (Optional)">
+            </div>
+            <button type="submit" class="submit-btn">Share Quote</button>
+        </form>
+    </div>
+</body>
+</html>
